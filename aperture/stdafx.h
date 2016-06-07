@@ -8,7 +8,10 @@
 #include "targetver.h"
 
 #include <stdio.h>
-//#include <tchar.h>
+
+#if defined(_WIN32)
+#include <tchar.h>
+#endif
 
 #include <string>
 #include <vector>
