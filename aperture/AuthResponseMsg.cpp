@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 
 #include <string>
 #include <boost/numeric/conversion/cast.hpp>
@@ -21,7 +21,8 @@ AuthResponseMsg::AuthResponseMsg()
 
 AuthResponseMsg::AuthResponseMsg(const std::string& challenge, const std::string& password)
 {
-	_data.push_back(PACKET_IDENTIFIER);
+	aperture::byte val = PACKET_IDENTIFIER;
+	_data.push_back(val);
 
 	//calculate our response
 	string correctHash = this->calculateChallengeResponse(challenge, password);
@@ -50,15 +51,15 @@ bool AuthResponseMsg::isServerResponse() const
 bool AuthResponseMsg::isValid(AuthChallengeMsg::ptr authChallenge)
 {
 	//check the header
-	if (_data[0] != PACKET_IDENTIFIER &&
-		_data[0] != SERVER_IDENTIFIER)
+	if (_data[0] != AuthResponseMsg::PACKET_IDENTIFIER &&
+		_data[0] != AuthResponseMsg::SERVER_IDENTIFIER)
 	{
 		return false;
 	}
 
 	string correctHash = this->calculateChallengeResponse(authChallenge->getPhrase(),
 		Settings::instance().config()["password"].as<string>());
-		
+
 	if (correctHash == this->getChallengeResponse()) {
 		return true;
 	}
@@ -69,7 +70,7 @@ bool AuthResponseMsg::isValid(AuthChallengeMsg::ptr authChallenge)
 std::string AuthResponseMsg::calculateChallengeResponse(const std::string& phrase, const std::string& password)
 {
 	CSHA1 sha;
-	
+
 	//calculate the correct hash based on password and the challenge that was sent
 	string correctHash(password + phrase);
 	sha.Update((unsigned char*) correctHash.data(), boost::numeric_cast<unsigned int>(correctHash.size()));
