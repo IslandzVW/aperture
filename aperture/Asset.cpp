@@ -1,6 +1,6 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "Asset.h"
-#include "Winsock2.h"
+//#include "Winsock2.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/lexical_cast.hpp>
@@ -63,7 +63,7 @@ boost::tuple<unsigned int, unsigned int> Asset::findDataLocationAndSize() const
 	aperture::byte nameFieldSz = (*_data)[currLoc];
 	//skip those bytes
 	currLoc += nameFieldSz + 1;
-	
+
 	//next up is the sz of the description field, skip those bytes
 	aperture::byte descFieldSz = (*_data)[currLoc];
 	currLoc += descFieldSz + 1;
@@ -75,7 +75,7 @@ boost::tuple<unsigned int, unsigned int> Asset::findDataLocationAndSize() const
 	return boost::tuple<unsigned int, unsigned int>(currLoc + sizeof(unsigned int), dataSz);
 }
 
-unsigned int Asset::copyAssetData(std::string& storage) const 
+unsigned int Asset::copyAssetData(std::string& storage) const
 {
 	unsigned int dataLoc;
 	unsigned int dataSz;

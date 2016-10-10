@@ -18,7 +18,7 @@ private:
 	const static aperture::byte SERVER_IDENTIFIER = 100;
 
 	const static short RESPONSE_SIZE = 40;
-	
+
 	aperture::byte_array _data;
 
 public:

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "AuthStatusMsg.h"
 
 namespace whip
@@ -10,7 +10,8 @@ AuthStatusMsg::AuthStatusMsg()
 
 AuthStatusMsg::AuthStatusMsg(AuthStatus authStatus)
 {
-	_messageData.push_back(AuthStatusMsg::PACKET_IDENTIFIER);
+	aperture::byte val = PACKET_IDENTIFIER;
+	_messageData.push_back(val);
 	_messageData.push_back(static_cast<aperture::byte>(authStatus));
 }
 

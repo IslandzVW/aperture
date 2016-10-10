@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 
 #include "WhipURI.h"
 #include <vector>
@@ -14,7 +14,7 @@ namespace whip
 		string uri(url);
 		//parse the uri
 		//url must start with whip
-		if (uri.substr(0, 7) != "whip://") throw std::runtime_error("Invaid whip URL.  Must start with whip://");
+		if (uri.substr(0, 7) != "whip://") throw std::runtime_error("Invalid whip URL.  Must start with whip://");
 
         //strip the Resource ID portion
         uri = uri.substr(7);
@@ -26,7 +26,7 @@ namespace whip
 
         //get the user and pass
         string pass = userAndHost[0];
-       
+
         //get the host and port
 		vector<string> hostAndPort;
 		boost::split(hostAndPort, userAndHost[1], boost::is_any_of(":"));

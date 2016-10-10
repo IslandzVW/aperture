@@ -40,7 +40,7 @@ namespace whip
 		typedef boost::function<void (AssetServer::ptr, bool)> ConnectCallback;
 		typedef boost::function<void (AssetServer::ptr)> SafeKillCallback;
 
-		enum ConnectionState 
+		enum ConnectionState
 		{
 			CSTATE_DISCONNECTED,
 			CSTATE_CONNECTING,
@@ -100,9 +100,9 @@ namespace whip
 
 
 		void onConnect(const boost::system::error_code& error);
-		
+
 		void onRecvChallenge(const boost::system::error_code& error, size_t bytesRcvd, AuthChallengeMsg::ptr challenge);
-		
+
 		void onChallengeResponseWrite(const boost::system::error_code& error, size_t bytesSent,
 			AuthResponseMsg::ptr authResponse);
 
@@ -169,7 +169,7 @@ namespace whip
 		/**
 		 * Retrieves the given asset from this server
 		 */
-		virtual void AssetServer::getAsset(const std::string& uuid, boost::function<void (aperture::IAsset::ptr)> callBack);
+		virtual void getAsset(const std::string& uuid, boost::function<void (aperture::IAsset::ptr)> callBack);
 
 		/**
 		 * Shuts down the connections and marks this server as shut down

@@ -22,7 +22,7 @@ set(LIBS ${LIBS} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY}
     ${Boost_CHRONO_LIBRARY})
 
 
-find_package( Curl REQUIRED)
+find_package( CURL REQUIRED)
 set(INCLUDES ${INCLUDES} ${CURL_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${CURL_LIBRARIES})
 
@@ -48,7 +48,7 @@ set ( Aperture_srcs
         aperture/request_parser.cpp aperture/server.cpp
         aperture/ServerResponseMsg.cpp aperture/Settings.cpp
         aperture/SHA1.cpp aperture/stdafx.cpp aperture/TokenBucket.cpp
-        aperture/Validator.cpp aperture/WhipURI.cpp aperture/win_main.cpp
+        aperture/Validator.cpp aperture/WhipURI.cpp aperture/win_main.cpp aperture/nix_main.cpp
         ${PROTO_SRCS}
     )
 
@@ -59,3 +59,4 @@ add_definitions(${DEFS})
 include_directories(${INCLUDES})
 add_executable( aperture ${Aperture_srcs})
 target_link_libraries(aperture ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS} ${LIBS} )
+target_compile_features(aperture PRIVATE cxx_range_for )
