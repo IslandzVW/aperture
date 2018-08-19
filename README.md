@@ -1,3 +1,9 @@
+### NOTE:
+This project has been moved to the independent Halcyon simulator project under:
+* https://github.com/HalcyonGrid/aperture
+
+---
+
 # InWorldz aperture texture and mesh server
 
 Aperture is a simple not quite compliant HTTP/1.1 server that sends texture and
